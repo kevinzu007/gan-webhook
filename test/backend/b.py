@@ -14,6 +14,7 @@ def on_connect():
         join_room(user_id)
         g.user_id = user_id  # Store the user_id in the global g object
         print(f'WebSocket Client {request.sid} connected with user ID: {user_id}')
+        print('ccccccccccccccccc')
 
 @socketio.on('disconnect')
 def on_disconnect():
@@ -33,13 +34,16 @@ def index():
 
 @app.route('/send_message', methods=['GET'])
 def send_message():
+    print('ssssssssssssssss')
     user_id = request.args.get('token')      # 获取连接时携带的用户身份ID
     cmd = "ping www.baidu.com -w 5"
     pipe = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, bufsize=1)
     for info in iter(pipe.stdout.readline, b''):
         info = info.decode("utf-8")
         #print(info)
+        print('kkkkkkkkkkkkkkkkkkkkkkk')
         socketio.emit('message', info, room=user_id)
+        print('jjjjjjjjjjjjjjjjjjjj')
         socketio.sleep(0.5)
     #return jsonify('pipeppp: OK')
     return jsonify({})

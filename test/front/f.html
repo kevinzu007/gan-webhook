@@ -16,14 +16,14 @@
         var socket = io.connect( 'http://' + '127.0.0.1:9527', { query:{token:token} } );
 
         socket.on('connect', function() {
-            console.log('Connected to WebSocket');
+            console.log('Connected to WebSocket --- kkk');
         });
         let log = ''
         socket.on('message', function(data) {
             var messageElement = document.getElementById('message');
             log = `${log}<br/>${JSON.stringify(data, null, 2)}`
             //console.log(messageElement);
-            //console.log("wwwwwwwww")
+            console.log("wwwwwwwww")
             messageElement.innerHTML = log;
         });
     </script>
